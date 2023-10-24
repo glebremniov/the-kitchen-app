@@ -1,0 +1,22 @@
+[
+  {
+    "key": "home",
+    "icon": "home",
+    "title": "Home"
+  },
+  {
+    "key": "wallet",
+    "icon": "wallet",
+    "title": "Wallet"
+  },
+  {
+    "key": "settings",
+    "icon": "settings",
+    "title": "Settings"
+  },
+  {
+    "key": "profile",
+    "icon": "profile",
+    "title": "Profile"
+  }
+]
