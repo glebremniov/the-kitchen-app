@@ -2,21 +2,31 @@
   {
     "key": "home",
     "icon": "home",
-    "title": "Home"
+    "title": "Home",
+    "path": "/home"
   },
   {
-    "key": "wallet",
-    "icon": "wallet",
-    "title": "Wallet"
+    "key": "statistics",
+    "icon": "statistics",
+    "title": "Statistics",
+    "path": "/statistics"
+  },
+  {
+    "key": "submit",
+    "icon": "submit",
+    "title": "Submit",
+    "path": "/submit"
+  },
+  {
+    "key": "info",
+    "icon": "info",
+    "title": "Info",
+    "path": "/info"
   },
   {
     "key": "settings",
     "icon": "settings",
-    "title": "Settings"
-  },
-  {
-    "key": "profile",
-    "icon": "profile",
-    "title": "Profile"
+    "title": "Settings",
+    "path": "/settings"
   }
 ]

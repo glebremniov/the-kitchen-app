@@ -1,22 +1,62 @@
-import { Icon } from '../../../shared/Icon'
-import { NAVIGATION_ITEM_CLASSNAME, NAVIGATION_ITEM_TEXT_CLASSNAME } from '../constants/NavigationItemContants'
+import classNames from 'classnames'
+import {
+  NAVIGATION_ITEM_CLASSNAME, NAVIGATION_ITEM_TEXT_CLASSNAME,
+  NAVIGATION_ITEM_ICON_CLASSNAME_ACTIVE, NAVIGATION_ITEM_TEXT_CLASSNAME_ACTIVE
+} from '../constants/NavigationItemContants'
+import { getIconByName } from '../helpers/getIconByName'
+import { NavLink } from 'react-router-dom'
 
 type NavigationItemProps = {
   title: string
+  path: string,
   icon?: string
+  shouldDisplayTitle?: boolean
 }
 
 export const NavigationItem = (props: NavigationItemProps) => {
 
-  const { title, icon = '' } = props
+  const {
+    title,
+    path,
+    shouldDisplayTitle,
+    icon = ''
+  } = props
+
+
+  const render = (isActive: boolean) => {
+
+    const IconComponent = getIconByName(icon, isActive)
+
+    return (
+      <>
+        <IconComponent
+          className={classNames(NAVIGATION_ITEM_TEXT_CLASSNAME, {
+            [NAVIGATION_ITEM_TEXT_CLASSNAME_ACTIVE]: isActive,
+            'h-6 w-6': shouldDisplayTitle,
+            'h-8 w-8': !shouldDisplayTitle
+          })}
+        />
+        {
+          shouldDisplayTitle &&
+          <span
+            className={classNames(NAVIGATION_ITEM_TEXT_CLASSNAME, {
+              [NAVIGATION_ITEM_TEXT_CLASSNAME_ACTIVE]: isActive
+            })}>{title}</span>
+        }
+      </>
+    )
+  }
 
   return (
-    <button
-      type="button"
-      className={NAVIGATION_ITEM_CLASSNAME}
+    <NavLink
+      to={path}
+      className={({ isActive }) =>
+        classNames(classNames(NAVIGATION_ITEM_CLASSNAME, {
+          [NAVIGATION_ITEM_ICON_CLASSNAME_ACTIVE]: isActive
+        }))
+      }
     >
-      <Icon name={icon} />
-      <span className={NAVIGATION_ITEM_TEXT_CLASSNAME}>{title}</span>
-    </button>
+      {({ isActive }) => render(isActive)}
+    </NavLink>
   )
 }

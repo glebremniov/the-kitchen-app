@@ -1,11 +1,10 @@
-import { Navigation } from '../widgets'
-import { Card } from '../features'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './router'
 
 export const App = () => {
   return (
     <>
-      <Navigation />
-      <Card />
+      <RouterProvider router={router} />
     </>
   )
 }

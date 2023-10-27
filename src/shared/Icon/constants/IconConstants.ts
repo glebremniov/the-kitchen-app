@@ -1,1 +1,0 @@
-export const DEFAULT_SVG_PROP_VALUE = Object.freeze({ width: 20, height: 20 })

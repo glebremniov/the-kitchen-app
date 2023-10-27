@@ -1,5 +1,5 @@
 export const Card = () => (
-  <div className="container mx-auto p-5">
+  <div className="container mx-auto">
     <div className="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl">
       <div>
         <span className="inline-flex items-center justify-center p-2 bg-indigo-500 rounded-md shadow-lg">
