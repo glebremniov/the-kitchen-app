@@ -2,6 +2,7 @@ import { Navigation } from '../../../widgets'
 import { Card } from '../../../temp'
 import { Outlet } from 'react-router-dom'
 import { TabGroup } from '../../../temp/TabGroup'
+import { SpinLoader } from '../../../shared'
 
 export const Main = () => {
 
@@ -12,6 +13,11 @@ export const Main = () => {
         <h1 className='text-2xl'>
           <Outlet />
         </h1>
+
+        <div className='flex items-center justify-center'>
+          <SpinLoader />
+        </div>
+
         <TabGroup />
         <Card />
       </div>

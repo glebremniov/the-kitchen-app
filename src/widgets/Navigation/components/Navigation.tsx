@@ -1,29 +1,18 @@
-import { useMemo } from 'react'
-import { NAVIGATION_CLASSNAME, NAVIGATION_CONTAINER_CLASSNAME } from '../constants/NavigationConstants'
+import { NAVIGATION_CLASSNAME, NAVIGATION_CONTAINER_CLASSNAME } from '../constants'
 import { NavigationItem } from './NavigationItem'
-import navigationItems from '../data/navigation-items.json'
-import { useNavigationSettings } from '../hooks'
+import { useNavigationItems } from '../hooks'
 
 export const Navigation = () => {
 
-  const [{ shouldDisplayTitle }] = useNavigationSettings()
-
-  const items = useMemo(() => {
-    return navigationItems.map(item =>
-      <NavigationItem
-        {...item}
-        shouldDisplayTitle={shouldDisplayTitle}
-      />
-    )
-  }, [shouldDisplayTitle])
+  const navItems = useNavigationItems()
 
   return (
     <div className={NAVIGATION_CLASSNAME}>
-      <div className={NAVIGATION_CONTAINER_CLASSNAME}>
+      <nav className={NAVIGATION_CONTAINER_CLASSNAME}>
         {
-          items
+          navItems.map(props => <NavigationItem {...props} />)
         }
-      </div>
+      </nav>
     </div>
   )
 }

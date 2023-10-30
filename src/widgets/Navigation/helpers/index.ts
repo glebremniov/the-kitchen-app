@@ -1,0 +1,1 @@
+export { getIconByName } from './getIconByName'

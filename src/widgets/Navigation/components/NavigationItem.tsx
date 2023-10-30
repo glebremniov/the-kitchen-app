@@ -1,10 +1,11 @@
 import classNames from 'classnames'
 import {
-  NAVIGATION_ITEM_CLASSNAME, NAVIGATION_ITEM_TEXT_CLASSNAME,
-  NAVIGATION_ITEM_ICON_CLASSNAME_ACTIVE, NAVIGATION_ITEM_TEXT_CLASSNAME_ACTIVE
-} from '../constants/NavigationItemContants'
-import { getIconByName } from '../helpers/getIconByName'
+  NAVIGATION_ITEM_CLASSNAME, NAVIGATION_ITEM_COLOR_CLASSNAME,
+  NAVIGATION_ITEM_CLASSNAME_ACTIVE, NAVIGATION_ITEM_COLOR_CLASSNAME_ACTIVE
+} from '../constants'
+import { getIconByName } from '../helpers'
 import { NavLink } from 'react-router-dom'
+import { useCallback } from 'react'
 
 type NavigationItemProps = {
   title: string
@@ -12,6 +13,12 @@ type NavigationItemProps = {
   icon?: string
   shouldDisplayTitle?: boolean
 }
+
+type NavLinkRenderProps = {
+  isActive: boolean;
+  isPending: boolean;
+  isTransitioning: boolean;
+};
 
 export const NavigationItem = (props: NavigationItemProps) => {
 
@@ -23,40 +30,42 @@ export const NavigationItem = (props: NavigationItemProps) => {
   } = props
 
 
-  const render = (isActive: boolean) => {
-
+  const render = useCallback(({ isActive }: NavLinkRenderProps) => {
     const IconComponent = getIconByName(icon, isActive)
 
     return (
       <>
         <IconComponent
-          className={classNames(NAVIGATION_ITEM_TEXT_CLASSNAME, {
-            [NAVIGATION_ITEM_TEXT_CLASSNAME_ACTIVE]: isActive,
+          className={classNames({
+            [NAVIGATION_ITEM_COLOR_CLASSNAME_ACTIVE]: isActive,
+            [NAVIGATION_ITEM_COLOR_CLASSNAME]: !isActive,
             'h-6 w-6': shouldDisplayTitle,
-            'h-8 w-8': !shouldDisplayTitle
+            'h-8 w-8': !shouldDisplayTitle,
           })}
         />
         {
-          shouldDisplayTitle &&
+          title && shouldDisplayTitle &&
           <span
-            className={classNames(NAVIGATION_ITEM_TEXT_CLASSNAME, {
-              [NAVIGATION_ITEM_TEXT_CLASSNAME_ACTIVE]: isActive
-            })}>{title}</span>
+            className={classNames('text-sm', {
+              [NAVIGATION_ITEM_COLOR_CLASSNAME_ACTIVE]: isActive,
+              [NAVIGATION_ITEM_COLOR_CLASSNAME]: !isActive,
+            })}
+          >{title}</span>
         }
       </>
     )
-  }
+  }, [icon, title, shouldDisplayTitle])
 
   return (
     <NavLink
       to={path}
       className={({ isActive }) =>
-        classNames(classNames(NAVIGATION_ITEM_CLASSNAME, {
-          [NAVIGATION_ITEM_ICON_CLASSNAME_ACTIVE]: isActive
-        }))
+        classNames(NAVIGATION_ITEM_CLASSNAME, {
+          [NAVIGATION_ITEM_CLASSNAME_ACTIVE]: isActive
+        })
       }
     >
-      {({ isActive }) => render(isActive)}
+      {(navLinkRenderProps) => render(navLinkRenderProps)}
     </NavLink>
   )
 }
