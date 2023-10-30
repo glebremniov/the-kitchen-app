@@ -1,0 +1,1 @@
+export { TabGroup, DMYTabGroup } from './components'
