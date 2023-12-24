@@ -1,2 +1,3 @@
-export { Main } from './Main'
-export { DefaultErrorPage } from './Error'
+export * from './Main'
+export * from './Error'
+export * from './Receipt'

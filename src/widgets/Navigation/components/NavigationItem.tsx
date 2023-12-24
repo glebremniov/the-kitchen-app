@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import {
-  NAVIGATION_ITEM_CLASSNAME, NAVIGATION_ITEM_COLOR_CLASSNAME,
-  NAVIGATION_ITEM_CLASSNAME_ACTIVE, NAVIGATION_ITEM_COLOR_CLASSNAME_ACTIVE
+  NAVIGATION_ITEM_CLASSNAME, NAVIGATION_ITEM_COLOR_CLASSNAME, NAVIGATION_ITEM_COLOR_CLASSNAME_ACTIVE
 } from '../constants'
 import { getIconByName } from '../helpers'
 import { NavLink } from 'react-router-dom'
@@ -59,11 +58,7 @@ export const NavigationItem = (props: NavigationItemProps) => {
   return (
     <NavLink
       to={path}
-      className={({ isActive }) =>
-        classNames(NAVIGATION_ITEM_CLASSNAME, {
-          [NAVIGATION_ITEM_CLASSNAME_ACTIVE]: isActive
-        })
-      }
+      className={NAVIGATION_ITEM_CLASSNAME}
     >
       {(navLinkRenderProps) => render(navLinkRenderProps)}
     </NavLink>

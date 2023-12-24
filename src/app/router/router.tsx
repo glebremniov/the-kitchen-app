@@ -4,8 +4,10 @@ import {
 
 import {
   Main,
-  DefaultErrorPage
+  DefaultErrorPage,
+  ReceiptPage
 } from '../../pages'
+import { Card } from '../../temp'
 
 export const router = createBrowserRouter([
   {
@@ -15,23 +17,23 @@ export const router = createBrowserRouter([
     children: [
       {
         path: 'home',
-        element: 'Home'
+        element: <ReceiptPage />
       },
       {
         path: 'statistics',
-        element: 'Statistics'
+        element: <Card />
       },
       {
         path: 'submit',
-        element: 'Submit'
+        element: <Card />
       },
       {
         path: 'info',
-        element: 'Info'
+        element: <Card />
       },
       {
         path: 'settings',
-        element: 'Settings'
+        element: <Card />
       },
     ]
   }
